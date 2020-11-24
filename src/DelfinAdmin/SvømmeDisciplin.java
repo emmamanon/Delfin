@@ -6,4 +6,5 @@ public class SvømmeDisciplin {
     private String navn;
     private LocalDateTime bestTimeAndDate;
 
+
 }
