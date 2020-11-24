@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Main {
 
 
-    private ArrayList<Medlem> alleMedlemmer;
+    private ArrayList<Medlem> alleMedlemmer; //Unødvendig? Medmindre de har begge hold
     private ArrayList<Medlem> konkurrenceHoldJuniorer;
     private ArrayList<Medlem> konkurrenceHoldSeniorer;
 
