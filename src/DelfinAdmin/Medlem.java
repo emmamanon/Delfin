@@ -43,6 +43,10 @@ public class Medlem {
 
         kontingentPayed = false;
     }
+
+    public int getAlder() {
+        return alder;
+    }
 }
 
 

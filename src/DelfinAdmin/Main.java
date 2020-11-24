@@ -1,7 +1,28 @@
 package DelfinAdmin;
 
 
+import java.util.ArrayList;
+
 public class Main {
+
+
+    private ArrayList<Medlem> alleMedlemmer;
+    private ArrayList<Medlem> konkurrenceHoldJuniorer;
+    private ArrayList<Medlem> konkurrenceHoldSeniorer;
+
+    void splitMembersIntoTeams(ArrayList<Medlem> medlemmer) {
+
+        for (Medlem element : medlemmer) {
+            if (element instanceof KonkurrenceSvømmer) {
+                if (element.getAlder() < 18)
+                    konkurrenceHoldJuniorer.add(element);
+                else
+                    konkurrenceHoldSeniorer.add(element);
+            }
+        }
+    }
+
+
     void run() {
         GeneriskMenu menu = new GeneriskMenu("DelfinAdmin", "Vælg menupunkt: ",
                 new String[]{"1. Tilføj nyt medlem", "2. Indtast bestilling", "3. Vis bestillingskø",
