@@ -1,27 +1,6 @@
 package DelfinAdmin;
 
-
-import java.util.ArrayList;
-
 public class Main {
-
-
-    private ArrayList<Medlem> alleMedlemmer; //Unødvendig? Medmindre de har begge hold
-    private ArrayList<Medlem> konkurrenceHoldJuniorer;
-    private ArrayList<Medlem> konkurrenceHoldSeniorer;
-
-    void splitMembersIntoTeams(ArrayList<Medlem> medlemmer) {
-
-        for (Medlem element : medlemmer) {
-            if (element instanceof KonkurrenceSvømmer) {
-                if (element.getAlder() < 18)
-                    konkurrenceHoldJuniorer.add(element);
-                else
-                    konkurrenceHoldSeniorer.add(element);
-            }
-        }
-    }
-
 
     void run() {
         GeneriskMenu menu = new GeneriskMenu("DelfinAdmin", "Vælg menupunkt: ",
