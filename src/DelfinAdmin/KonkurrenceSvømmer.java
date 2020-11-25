@@ -8,6 +8,19 @@ public class KonkurrenceSvømmer extends Medlem {
     private int holdNr;
     private ArrayList<KonkurrenceResultat> konkurrenceResultater;
 
+    public Træner getTræner() {
+        return træner;
+    }
 
+    public ArrayList<SvømmeDisciplin> getSvømmediscipliner() {
+        return svømmediscipliner;
+    }
 
+    public int getHoldNr() {
+        return holdNr;
+    }
+
+    public ArrayList<KonkurrenceResultat> getKonkurrenceResultater() {
+        return konkurrenceResultater;
+    }
 }
