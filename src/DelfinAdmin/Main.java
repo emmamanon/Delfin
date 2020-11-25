@@ -90,7 +90,7 @@ public class Main {
             boolean aktivStatus;
             boolean konkurrenceSvømmer;
             String line;
-            for (int i=0;i<m.medlemArray.size();i++)
+            for (int i = 0; i < m.medlemArray.size(); i++)
             {
                 ID = m.medlemArray.get(i).getID();
                 navn = m.medlemArray.get(i).getNavn();
@@ -101,14 +101,12 @@ public class Main {
                         +" "+ Boolean.toString(konkurrenceSvømmer)+ "\n";
                 virkNu.write(line);
 
-
             }
             virkNu.close();
 
         }
-         catch (Exception e) {
-             System.out.println("FILE READING ERROR!");
-         }
-
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

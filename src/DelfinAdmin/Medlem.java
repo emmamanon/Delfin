@@ -58,10 +58,6 @@ public class Medlem {
         return navn;
     }
 
-    public int getAlder() {
-        return alder;
-    }
-
     public boolean isAktivStatus() {
         return aktivStatus;
     }
