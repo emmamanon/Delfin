@@ -11,7 +11,7 @@ public class Top5Sortering {
         for (Medlem element : medlemmer) {
             if (element instanceof KonkurrenceSvømmer) {
                 if (element.getAlder() < 18)
-                    //Caster, dvs. ændrer en datatype fra en til en anden. Viker kun hvis de extender hinanden
+                    //Caster, dvs. ændrer en datatype fra en til en anden. Virker kun hvis de extender hinanden
                     konkurrenceHoldJuniorer.add((KonkurrenceSvømmer) element);
                 else
                     konkurrenceHoldSeniorer.add((KonkurrenceSvømmer) element);
