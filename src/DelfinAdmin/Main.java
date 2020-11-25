@@ -1,7 +1,7 @@
 package DelfinAdmin;
 
-public class Main {
 
+public class Main {
     void run() {
         GeneriskMenu menu = new GeneriskMenu("DelfinAdmin", "Vælg menupunkt: ",
                 new String[]{"1. Tilføj nyt medlem", "2. Indtast bestilling", "3. Vis bestillingskø",
