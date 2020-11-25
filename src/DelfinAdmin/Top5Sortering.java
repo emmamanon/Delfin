@@ -7,8 +7,7 @@ public class Top5Sortering {
     protected ArrayList<Medlem> konkurrenceHoldJuniorer;
     protected ArrayList<Medlem> konkurrenceHoldSeniorer;
 
-    void splitMembersIntoTeams(ArrayList<Medlem> medlemmer) {
-
+    Top5Sortering (ArrayList<Medlem> medlemmer) {
         for (Medlem element : medlemmer) {
             if (element instanceof KonkurrenceSvømmer) {
                 if (element.getAlder() < 18)
@@ -19,5 +18,9 @@ public class Top5Sortering {
             else
                 ikkeKonkurrerene.add(element);
         }
+    }
+
+    void top5Sorterin() {
+
     }
 }
