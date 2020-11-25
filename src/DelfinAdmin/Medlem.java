@@ -1,6 +1,7 @@
 package DelfinAdmin;
 
 public class Medlem {
+
     private int ID;
     private String navn;
     private int alder;
@@ -19,11 +20,12 @@ public class Medlem {
         super();
     }
 
-    Medlem(String navn, int alder, boolean aktivStatus, boolean konkurrenceSvømmer) {
+    Medlem(String navn,int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer) {
 
 
 
-        ID = 1;
+        //ID = 1;
+        this.ID = ID;
         this.navn = navn;
         this.alder = alder;
         this.aktivStatus = aktivStatus;
@@ -46,6 +48,26 @@ public class Medlem {
 
     public int getAlder() {
         return alder;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public String getNavn() {
+        return navn;
+    }
+
+    public int getAlder() {
+        return alder;
+    }
+
+    public boolean isAktivStatus() {
+        return aktivStatus;
+    }
+
+    public boolean isKonkurrenceSvømmer() {
+        return konkurrenceSvømmer;
     }
 }
 

@@ -22,3 +22,5 @@ public class Træner {
     }
 
 }
+
+//Dette er en test for push (samavia)
