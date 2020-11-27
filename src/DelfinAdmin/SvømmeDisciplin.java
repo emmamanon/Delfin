@@ -1,5 +1,4 @@
 package DelfinAdmin;
-import java.time.LocalTime;
 
 public class SvømmeDisciplin {
     //For at lave top 5 giver det mere kodemæssigt mening at lave tid om til double
@@ -10,7 +9,6 @@ public class SvømmeDisciplin {
     public String getNavn() {
         return navn;
     }
-
     public Medlem getMedlem() {
         return medlem;
     }
@@ -32,6 +30,7 @@ public class SvømmeDisciplin {
         this.tidISekunder = tidISekunder;
         return null;
     }
+
 
     SvømmeDisciplin rygCrawl(String navn, Medlem medlem, double tidISekunder) {
         this.navn = navn;
