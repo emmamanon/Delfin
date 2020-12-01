@@ -21,6 +21,9 @@ public class Træner {
         }
     }
 
+    public String getName() {
+        return name;
+    }
 }
 
 //Dette er en test for push (samavia)

@@ -6,6 +6,17 @@ public class SvømmeDisciplin {
     private Medlem medlem;
     private double tidISekunder;
 
+
+    SvømmeDisciplin(){
+
+    }
+
+    SvømmeDisciplin(String navn, double tidISekunder) {
+        this.navn = navn;
+        this.tidISekunder = tidISekunder;
+    }
+
+
     public String getNavn() {
         return navn;
     }
