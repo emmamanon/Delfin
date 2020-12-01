@@ -20,7 +20,7 @@ public class Medlem {
         super();
     }
 
-    Medlem(String navn,int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer) {
+    Medlem(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer) {
 
 
 
@@ -46,9 +46,8 @@ public class Medlem {
         kontingentPayed = false;
     }
 
-    public int getAlder() {
-        return alder;
-    }
+
+
 
     public int getID() {
         return ID;
@@ -64,6 +63,10 @@ public class Medlem {
 
     public boolean isKonkurrenceSvømmer() {
         return konkurrenceSvømmer;
+    }
+
+    public int getAlder() {
+        return alder;
     }
 }
 

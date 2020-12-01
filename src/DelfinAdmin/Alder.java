@@ -19,4 +19,8 @@ public class Alder {
         ageNow = difference.getYears();
 
     }
+
+    public int getAgeNow() {
+        return ageNow;
+    }
 }
