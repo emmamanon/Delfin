@@ -9,7 +9,6 @@ public class SvømmeDisciplin {
     public String getNavn() {
         return navn;
     }
-
     public Medlem getMedlem() {
         return medlem;
     }
@@ -18,9 +17,40 @@ public class SvømmeDisciplin {
         return tidISekunder;
     }
 
-    SvømmeDisciplin(String navn, Medlem medlem, double tidISekunder) {
+    SvømmeDisciplin crawl(String navn, Medlem medlem, double tidISekunder) {
         this.navn = navn;
         this.medlem = medlem;
         this.tidISekunder = tidISekunder;
+        return null;
+    }
+
+    SvømmeDisciplin butterfly(String navn, Medlem medlem, double tidISekunder) {
+        this.navn = navn;
+        this.medlem = medlem;
+        this.tidISekunder = tidISekunder;
+        return null;
+    }
+
+
+    SvømmeDisciplin rygCrawl(String navn, Medlem medlem, double tidISekunder) {
+        this.navn = navn;
+        this.medlem = medlem;
+        this.tidISekunder = tidISekunder;
+        return null;
+    }
+
+    SvømmeDisciplin brystSvømning(String navn, Medlem medlem, double tidISekunder) {
+        this.navn = navn;
+        this.medlem = medlem;
+        this.tidISekunder = tidISekunder;
+        return null;
+    }
+
+
+    SvømmeDisciplin hundeSvømning(String navn, Medlem medlem, double tidISekunder) {
+        this.navn = navn;
+        this.medlem = medlem;
+        this.tidISekunder = tidISekunder;
+        return null;
     }
 }
