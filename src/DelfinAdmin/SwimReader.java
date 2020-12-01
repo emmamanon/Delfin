@@ -60,7 +60,7 @@ public class SwimReader {
         }
 
         while (fileReader2.hasNext()) {
-
+            String testHelp = fileReader2.nextLine();
             int id = Integer.parseInt(fileReader2.nextLine());
             String navn = fileReader2.nextLine();
             int alder = Integer.parseInt(fileReader2.nextLine());
@@ -149,6 +149,7 @@ public class SwimReader {
                         ((KonkurrenceSvømmer) element).getKonkurrenceResultater();
 
                 try {
+                    fileWriter2.write("\n");
                     fileWriter2.write(String.valueOf(id) + "\n");
                     fileWriter2.write(navn + "\n");
                     fileWriter2.write(String.valueOf(alder) + "\n");
@@ -174,7 +175,7 @@ public class SwimReader {
                                     konkurrenceResultat.getDisciplin() + "," + konkurrenceResultat.getRangering() + "," +
                                     konkurrenceResultat.getTidISekunder() + ",");
                         }
-                        fileWriter2.write("\n");
+                        fileWriter2.write("" + "\n");
                     }
 
 

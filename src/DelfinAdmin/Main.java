@@ -97,9 +97,14 @@ public class Main {
                     int i = 0;
                     for (Medlem element : medlemArray) {
                         if (element instanceof KonkurrenceSvømmer) {
-                            System.out.println(((KonkurrenceSvømmer) element).getSvømmediscipliner().get(i).getTidISekunder());
+                           for (SvømmeDisciplin svømmeDisciplin : ((KonkurrenceSvømmer) element).getSvømmediscipliner()) {
+                               System.out.println(svømmeDisciplin.getNavn() + ", " + svømmeDisciplin.getTidISekunder());
+                           }
+
                         }
+                        i++;
                     }
+                    break;
 
                 case 6:
 
