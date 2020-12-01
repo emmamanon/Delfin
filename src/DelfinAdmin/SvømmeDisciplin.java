@@ -1,5 +1,8 @@
 package DelfinAdmin;
 
+/**
+ * @author Martin
+ */
 public class SvømmeDisciplin {
     //For at lave top 5 giver det mere kodemæssigt mening at lave tid om til double
     private String navn;

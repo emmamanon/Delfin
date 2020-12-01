@@ -2,6 +2,9 @@ package DelfinAdmin;
 
 import java.util.ArrayList;
 
+/**
+ * @author Emma
+ */
 public class KonkurrenceSvømmer extends Medlem {
     private Træner træner;
     private ArrayList<SvømmeDisciplin> svømmediscipliner;

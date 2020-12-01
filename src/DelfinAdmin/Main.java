@@ -7,14 +7,27 @@ import java.lang.reflect.Member;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileWriter;
 
+
+/**
+ * @author Emma, Rasmus, Martin, Samavia og Marc
+ */
 public class Main {
     private ArrayList<Medlem> medlemArray;
     private ArrayList<Medlem> ændredeMedlemmer;
     private Scanner scanner;
 
 
+
+    int searchMembersByName(String navn) {
+        for (Medlem element : medlemArray) {
+            if (navn.equalsIgnoreCase(element.getNavn())) {
+                return medlemArray.indexOf(element);
+            }
+        }
+        System.out.println("Navnet findes ikke i listen");
+        return -1;
+    }
 
     void addNewMember() {
         medlemArray = new SwimReader().loadMedlemmer();
@@ -58,10 +71,12 @@ public class Main {
     void  run() {
 
         SwimReader swimReader = new SwimReader();
+        scanner = new Scanner(System.in);
 
         GeneriskMenu menu = new GeneriskMenu("DelfinAdmin", "Vælg menupunkt: ",
-                new String[]{"1. Tilføj nyt medlem", "2. Indtast bestilling", "3. Vis bestillingskø",
-                        "4. Næste ordre", "5. Færdiggør ordre", "6. Statistik menu",  "9. Exit"});
+                new String[]{"1. Tilføj nyt medlem", "2. Indtast bestilling", "3. Gem ændringer",
+                        "4. List alle medlemmer", "5. Tider for konkurrenceSvømmere", 
+                        "6. Søg efter medlem med navn",  "9. Exit"});
 
         while (true) {
 
@@ -83,6 +98,11 @@ public class Main {
 
 
                 case 3:
+                    if (ændredeMedlemmer == null) {
+                        System.out.println("Der er ingen ændringer at gemme");
+                        break;
+                    }
+
                     medlemArray.addAll(ændredeMedlemmer);
                     swimReader.writeToFiles(medlemArray);
                     ændredeMedlemmer.clear();
@@ -107,6 +127,13 @@ public class Main {
                     break;
 
                 case 6:
+                    System.out.println("Indtast medlems navn:");
+                    String navn = scanner.nextLine();
+                    if (searchMembersByName(navn) != -1) {
+                        System.out.println(medlemArray.get(searchMembersByName(navn)).getID());
+                        System.out.println(medlemArray.get(searchMembersByName(navn)).getNavn());
+                    }
+                    break;
 
                 case 9:
 

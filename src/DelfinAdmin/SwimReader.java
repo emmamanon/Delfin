@@ -7,6 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * @author Samavia og Marc
+ */
+
 public class SwimReader {
     private File file1;
     private File file2;

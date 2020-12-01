@@ -3,6 +3,10 @@ package DelfinAdmin;
 
 import java.util.ArrayList;
 
+/**
+ * @author Martin
+ */
+
 public class Træner {
     private String name;
     private ArrayList<Medlem> hold;
@@ -14,12 +18,7 @@ public class Træner {
     }
 
 
-
-    void udtagTop5Crawl(ArrayList<Medlem> medlemmer) {
-        for (Medlem element : medlemmer) {
-
-        }
-    }
+    
 
     public String getName() {
         return name;

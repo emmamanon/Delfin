@@ -3,6 +3,9 @@ package DelfinAdmin;
 import java.time.LocalDate;
 import java.time.Period;
 
+/**
+ * @author Rasmus
+ */
 public class Alder {
     private LocalDate birthday;
     private int ageNow;

@@ -2,6 +2,10 @@ package DelfinAdmin;
 
 import java.util.ArrayList;
 
+/**
+ * @author Rasmus
+ */
+
 public class Top5Sortering {
     protected ArrayList<Medlem> ikkeKonkurrerene; //Unødvendig?
     protected ArrayList<KonkurrenceSvømmer> konkurrenceHoldJuniorer;

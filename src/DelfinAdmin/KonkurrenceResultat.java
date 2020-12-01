@@ -3,6 +3,10 @@ package DelfinAdmin;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+/**
+ * @author Emma
+ */
+
 public class KonkurrenceResultat {
     private String konkurrenceNavn;
     private String disciplin;
