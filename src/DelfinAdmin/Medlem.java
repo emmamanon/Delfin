@@ -1,5 +1,8 @@
 package DelfinAdmin;
 
+/**
+ * @author Samavia
+ */
 public class Medlem {
 
     private int ID;
