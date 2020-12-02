@@ -14,16 +14,7 @@ public class Medlem {
     private double kontingentsats;
     private boolean kontingentPayed;
     private final double KONTINGENTSATS_PASSIV = 500.0;
-    private final double KONTINGENTSATS_JUNIOR = 1000.0;
-    private final double KONTINGENTSATS_SENIOR = 1600.0;
-    private final double SENIOR_RABAT = 0.75 * KONTINGENTSATS_SENIOR;
-
-
-    Medlem() {
-        super();
-    }
-
-    Medlem(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer) {
+    private final double KONTINGENT Medlem(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer) {
 
 
 
@@ -48,6 +39,15 @@ public class Medlem {
 
         kontingentPayed = false;
     }
+    SATS_JUNIOR = 1000.0;
+    private final double KONTINGENTSATS_SENIOR = 1600.0;
+    private final double SENIOR_RABAT = 0.75 * KONTINGENTSATS_SENIOR;
+
+
+    Medlem() {
+        super();
+    }
+
 
 
 
