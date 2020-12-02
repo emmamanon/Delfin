@@ -14,8 +14,17 @@ public class Medlem {
     private double kontingentsats;
     private boolean kontingentPayed;
     private final double KONTINGENTSATS_PASSIV = 500.0;
-    private final double KONTINGENT Medlem(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer) {
+    private final double KONTINGENTSATS_JUNIOR = 1000.0;
+    private final double KONTINGENTSATS_SENIOR = 1600.0;
+    private final double SENIOR_RABAT = 0.75 * KONTINGENTSATS_SENIOR;
 
+
+
+    Medlem() {
+        super();
+    }
+
+    Medlem(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer) {
 
 
         //ID = 1;
@@ -25,7 +34,6 @@ public class Medlem {
         this.aktivStatus = aktivStatus;
         junior = (alder < 18);
         this.konkurrenceSvømmer = konkurrenceSvømmer;
-
 
 
         if (!aktivStatus)
@@ -38,14 +46,6 @@ public class Medlem {
             kontingentsats = KONTINGENTSATS_SENIOR;
 
         kontingentPayed = false;
-    }
-    SATS_JUNIOR = 1000.0;
-    private final double KONTINGENTSATS_SENIOR = 1600.0;
-    private final double SENIOR_RABAT = 0.75 * KONTINGENTSATS_SENIOR;
-
-
-    Medlem() {
-        super();
     }
 
 
