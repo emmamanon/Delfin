@@ -81,7 +81,7 @@ public class Main {
         boolean kontingentPayed = Boolean.parseBoolean(scanner.nextLine());
 
         if (!aktivStatus) {
-            ændredeMedlemmer.add(new Medlem(navn, id, alder, false, false,kontingentPayed));
+            ændredeMedlemmer.add(new Medlem(navn, id, alder, false, false, kontingentPayed));
         } else {
 
             System.out.println("Indtast true for konkurrenceSvømmer eller false " +
