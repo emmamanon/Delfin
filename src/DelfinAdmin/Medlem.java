@@ -65,6 +65,8 @@ public class Medlem {
         return aktivStatus;
     }
 
+    public boolean isJunior() { return junior;}
+
     public boolean isKonkurrenceSvømmer() {
         return konkurrenceSvømmer;
     }

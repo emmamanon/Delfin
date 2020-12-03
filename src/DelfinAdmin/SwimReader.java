@@ -65,7 +65,7 @@ public class SwimReader {
         }
 
         while (fileReader2.hasNext()) {
-            String testHelp = fileReader2.nextLine();
+            String help = fileReader2.nextLine();
             int id = Integer.parseInt(fileReader2.nextLine());
             String navn = fileReader2.nextLine();
             int alder = Integer.parseInt(fileReader2.nextLine());
@@ -75,9 +75,11 @@ public class SwimReader {
             Træner træner = new Træner(fileReader2.nextLine());
             String[] svømmeDisciplinerOgTiderArray = fileReader2.nextLine().split(",");
             ArrayList<SvømmeDisciplin> svømmeDisciplinerOgTiderArrayList = new ArrayList<>();
+            String[] konkurrenceResultaterArray = fileReader2.nextLine().split(",");
+            ArrayList<KonkurrenceResultat> konkurrenceResultaterArrayList = new ArrayList<>();
 
-            if (svømmeDisciplinerOgTiderArray.length < 1) {
-                svømmeDisciplinerOgTiderArrayList.add(new SvømmeDisciplin());
+            if (svømmeDisciplinerOgTiderArray.length < 2) {
+
             } else {
 
                 int j = 1;
@@ -90,32 +92,34 @@ public class SwimReader {
                     j += 2;
                 }
             }
-            int holdNr = (alder < 18 ? 2 : 1);
 
-            String[] konkurrenceResultaterArray = fileReader2.nextLine().split(",");
-            ArrayList<KonkurrenceResultat> konkurrenceResultaterArrayList = new ArrayList<>();
+            if (konkurrenceResultaterArray.length < 4) {
 
-            if (konkurrenceResultaterArray.length < 1) {
-                konkurrenceResultaterArrayList.add(new KonkurrenceResultat());
             } else {
+
 
                 int k = 1;
                 int l = 2;
                 int m = 3;
-                for (int i = 0; i < konkurrenceResultaterArray.length - 3; i += 4) {
+                for (int i = 0; i < konkurrenceResultaterArray.length - 3; i+=4) {
 
-                    konkurrenceResultaterArrayList.add(new KonkurrenceResultat(konkurrenceResultaterArray[i],
-                            konkurrenceResultaterArray[k], Integer.parseInt(konkurrenceResultaterArray[l]),
-                            Double.parseDouble(konkurrenceResultaterArray[m])));
+                    String name = konkurrenceResultaterArray[i];
+                    String disciplin = konkurrenceResultaterArray[k];
+                    int rank = Integer.parseInt(konkurrenceResultaterArray[l]);
+                    double swimTime = Double.parseDouble(konkurrenceResultaterArray[m]);
+
+                    KonkurrenceResultat konkurrenceResultat = new KonkurrenceResultat(name, disciplin, rank, swimTime);
+                    konkurrenceResultaterArrayList.add(konkurrenceResultat);
 
                     k += 4;
                     l += 4;
                     m += 4;
 
                 }
+
             }
             medlemsListe.add(new KonkurrenceSvømmer(navn, id, alder, aktivStatus, konkurrenceSvømmer, kontingentPayed,
-                    træner, svømmeDisciplinerOgTiderArrayList, holdNr, konkurrenceResultaterArrayList));
+                    træner, svømmeDisciplinerOgTiderArrayList, konkurrenceResultaterArrayList));
 
         }
 
@@ -151,21 +155,21 @@ public class SwimReader {
                 Træner træner = ((KonkurrenceSvømmer) element).getTræner();
                 ArrayList<SvømmeDisciplin> svømmeDiscipliner =
                         ((KonkurrenceSvømmer) element).getSvømmediscipliner();
-                int holdNr = ((KonkurrenceSvømmer) element).getHoldNr();
                 ArrayList<KonkurrenceResultat> konkurrenceResultater =
                         ((KonkurrenceSvømmer) element).getKonkurrenceResultater();
 
                 try {
                     fileWriter2.write("\n");
-                    fileWriter2.write(String.valueOf(id) + "\n");
+                    fileWriter2.write(id + "\n");
                     fileWriter2.write(navn + "\n");
-                    fileWriter2.write(String.valueOf(alder) + "\n");
-                    fileWriter2.write(String.valueOf(aktivStatus) + "\n");
-                    fileWriter2.write(String.valueOf(konkurrenceSvømmer) + "\n");
-                    fileWriter2.write(String.valueOf(kontigentPayed) + "\n");
+                    fileWriter2.write(alder + "\n");
+                    fileWriter2.write(aktivStatus + "\n");
+                    fileWriter2.write(konkurrenceSvømmer + "\n");
+                    fileWriter2.write(kontigentPayed + "\n");
                     fileWriter2.write(træner.getName() + "\n");
                     if (svømmeDiscipliner.size() < 1) {
-                        fileWriter2.write("\n" );
+                        fileWriter2.write("\n");
+
                     } else {
                         for (SvømmeDisciplin svømmeDisciplin : svømmeDiscipliner) {
                             fileWriter2.write(svømmeDisciplin.getNavn() + "," +
@@ -173,19 +177,17 @@ public class SwimReader {
                         }
                         fileWriter2.write("\n");
                     }
-
-                    fileWriter2.write(String.valueOf(holdNr));
                     if (konkurrenceResultater.size() < 1) {
-                        fileWriter2.write ( "\n");
+                        fileWriter2.write("\n");
+
                     } else {
                         for (KonkurrenceResultat konkurrenceResultat : konkurrenceResultater) {
                             fileWriter2.write(konkurrenceResultat.getKonkurrenceNavn() + "," +
                                     konkurrenceResultat.getDisciplin() + "," + konkurrenceResultat.getRangering() + "," +
                                     konkurrenceResultat.getTidISekunder() + ",");
                         }
-                        fileWriter2.write("" + "\n");
+                        fileWriter2.write("\n");
                     }
-
 
                 } catch (IOException e) {
                     e.printStackTrace();

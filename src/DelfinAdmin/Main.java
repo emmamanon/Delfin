@@ -17,6 +17,93 @@ public class Main {
     private ArrayList<Medlem> ændredeMedlemmer;
     private Scanner scanner;
 
+    void alterResults() {
+        scanner = new Scanner(System.in);
+        System.out.println("Indtast medlemmets navn du ønsker at redigere tider for:");
+        String navn = scanner.nextLine();
+
+        if (medlemArray.get(searchMembersByName(navn)) instanceof KonkurrenceSvømmer) {
+
+            System.out.println("Ønsker du at tilføje nye træningstider, eller et nyt konkurrenceresultat?" +
+                    "(t for træningstider, k for konkurrenceresultat");
+            String userAnswer = scanner.nextLine();
+
+            while (!userAnswer.equalsIgnoreCase("t") &&
+                    !userAnswer.equalsIgnoreCase("k")) {
+
+                System.out.println("Indtast venligst t eller k");
+                userAnswer = scanner.nextLine();
+            }
+
+            if (userAnswer.equalsIgnoreCase("t")) {
+                ArrayList<SvømmeDisciplin> helpArrayTræning =
+                        ((KonkurrenceSvømmer) medlemArray.get(searchMembersByName(navn))).getSvømmediscipliner();
+                boolean run = true;
+
+                while (run) {
+
+                    System.out.println("Hvilken disciplin har svømmeren forbedret sin tid i?" +
+                            "(bryst, crawl, rygcrawl eller butterfly");
+                    String disciplin = scanner.nextLine();
+                    System.out.println("Hvad var tiden? (i sekunder og millisekunder)");
+                    double tid = Double.parseDouble(scanner.nextLine());
+                    helpArrayTræning.add(new SvømmeDisciplin(disciplin, tid));
+
+                    System.out.println("Ønsker du at opdatere flere træningstider? (y for ja, n for nej");
+                    String userDecision = scanner.nextLine();
+
+                    while (!userDecision.equalsIgnoreCase("y") &&
+                            !userDecision.equalsIgnoreCase("n")) {
+
+                        System.out.println("Indtast venligst y eller n");
+                        userDecision = scanner.nextLine();
+                    }
+
+                    if (userDecision.equalsIgnoreCase("n")) {
+                        run = false;
+                    }
+                }
+
+                ((KonkurrenceSvømmer) medlemArray.get(searchMembersByName(navn))).setSvømmediscipliner(helpArrayTræning);
+            } else {
+                ArrayList<KonkurrenceResultat> helpArrayKonkurrence =
+                        ((KonkurrenceSvømmer) medlemArray.get(searchMembersByName(navn))).getKonkurrenceResultater();
+                boolean run = true;
+
+                System.out.println("Hvilket stævne deltog svømmeren i?");
+                String compName = scanner.nextLine();
+
+                while (run) {
+                    System.out.println("Hvilken disciplin deltog svømmeren i?");
+                    String disciplin = scanner.nextLine();
+                    System.out.println("Hvilken placering opnåede svømmeren i denne disciplin?");
+                    int rank = Integer.parseInt(scanner.nextLine());
+                    System.out.println("I hvilken tid svømmede deltageren? (i sekunder, og millisekunder)");
+                    double swimTime = Double.parseDouble(scanner.nextLine());
+
+                    helpArrayKonkurrence.add(new KonkurrenceResultat(compName, disciplin, rank, swimTime));
+
+                    System.out.println("Deltog svømmeren i andre discipliner ved samme stævne? (y for ja, n for nej");
+                    String userDecision = scanner.nextLine();
+
+                    while (!userDecision.equalsIgnoreCase("y") &&
+                            !userDecision.equalsIgnoreCase("n")) {
+
+                        System.out.println("Indtast venligst y eller n");
+                        userDecision = scanner.nextLine();
+                    }
+
+                    if (userDecision.equalsIgnoreCase("n")) {
+                        run = false;
+                    }
+                }
+                ((KonkurrenceSvømmer) medlemArray.get(searchMembersByName(navn))).setKonkurrenceResultater(helpArrayKonkurrence);
+            }
+
+        } else {
+            System.out.println("Medlemmet er ikke registreret som konkurrence svømmer");
+        }
+    }
 
     void registerPayment() {
         scanner = new Scanner(System.in);
@@ -89,10 +176,10 @@ public class Main {
             boolean konkurrenceSvømmer = Boolean.parseBoolean(scanner.nextLine());
 
             if (konkurrenceSvømmer) {
-                int holdNr = (alder < 18 ? 2 : 1);
+
                 ændredeMedlemmer.add(new KonkurrenceSvømmer(navn, id, alder, true, true,
                         kontingentPayed, new Træner((alder < 18 ? "Ole Juniorsen" : "Gunnar Seniorsen")),
-                        new ArrayList<SvømmeDisciplin>(), holdNr,  new ArrayList<KonkurrenceResultat>()));
+                        new ArrayList<SvømmeDisciplin>(), new ArrayList<KonkurrenceResultat>()));
             } else {
                 ændredeMedlemmer.add(new Medlem(navn, id, alder, true, false, kontingentPayed));
             }
@@ -104,11 +191,13 @@ public class Main {
         SwimReader swimReader = new SwimReader();
         scanner = new Scanner(System.in);
         medlemArray = swimReader.loadMedlemmer();
+        boolean changesMade = false;
 
         GeneriskMenu menu = new GeneriskMenu("DelfinAdmin", "Vælg menupunkt: ",
                 new String[]{"1. Tilføj nyt medlem", "2. Vis medlemmer i restance", "3. Gem ændringer",
                         "4. List alle medlemmer", "5. Tider for konkurrenceSvømmere", 
-                        "6. Søg efter medlem med navn", "7. Registrer betaling af kontingent", "9. Exit"});
+                        "6. Redigér tider for konkurrenceSvømmere", "7. Registrer betaling af kontingent",
+                        "8. Vis konkurrenceresultater", "9. Exit"});
 
         while (true) {
 
@@ -132,14 +221,17 @@ public class Main {
 
 
                 case 3:
-                    if (ændredeMedlemmer == null) {
+                    if (ændredeMedlemmer == null && !changesMade) {
                         System.out.println("Der er ingen ændringer at gemme");
                         break;
                     }
 
-                    medlemArray.addAll(ændredeMedlemmer);
+                    if (ændredeMedlemmer != null) {
+                        medlemArray.addAll(ændredeMedlemmer);
+                        ændredeMedlemmer.clear();
+                    }
                     swimReader.writeToFiles(medlemArray);
-                    ændredeMedlemmer.clear();
+
                     break;
 
                 case 4:
@@ -161,16 +253,24 @@ public class Main {
                     break;
 
                 case 6:
-                    System.out.println("Indtast medlems navn:");
-                    String navn = scanner.nextLine();
-                    if (searchMembersByName(navn) != -1) {
-                        System.out.printf("ID #%d, Navn: %s\n", medlemArray.get(searchMembersByName(navn)).getID(),
-                                medlemArray.get(searchMembersByName(navn)).getNavn());
-                    }
+                    alterResults();
+                    changesMade = true;
                     break;
 
                 case 7:
                     registerPayment();
+                    break;
+                case 8:
+                    for (Medlem element : medlemArray) {
+                        if (element instanceof KonkurrenceSvømmer) {
+                            for (KonkurrenceResultat konkurrenceResultat : ((KonkurrenceSvømmer) element).getKonkurrenceResultater()) {
+                                System.out.printf("Svømmer: %s\nStævne: %s\nDiscipling: %s\nPlacering: %d\nSvømmetid: %.2f\n",
+                                        element.getNavn(), konkurrenceResultat.getKonkurrenceNavn(), konkurrenceResultat.getDisciplin(),
+                                        konkurrenceResultat.getRangering(), konkurrenceResultat.getTidISekunder());
+
+                            }
+                        }
+                    }
                     break;
 
 

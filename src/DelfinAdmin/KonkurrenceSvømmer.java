@@ -19,30 +19,48 @@ public class KonkurrenceSvømmer extends Medlem {
 
     KonkurrenceSvømmer(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer,
                        boolean kontingentPayed, Træner træner,
-                       ArrayList<SvømmeDisciplin> svømmediscipliner,
-                       int holdNr, ArrayList<KonkurrenceResultat> konkurrenceResultater) {
+                       ArrayList<SvømmeDisciplin> svømmediscipliner
+                       , ArrayList<KonkurrenceResultat> konkurrenceResultater) {
 
         super(navn, ID, alder, aktivStatus, konkurrenceSvømmer, kontingentPayed);
         this.træner = træner;
         this.svømmediscipliner = svømmediscipliner;
-        this.holdNr = holdNr;
+        holdNr = (super.isJunior() ? 2 : 1);
         this.konkurrenceResultater = konkurrenceResultater;
-    }
-
-
-    public ArrayList<SvømmeDisciplin> getSvømmediscipliner() {
-        return svømmediscipliner;
     }
 
     public Træner getTræner() {
         return træner;
     }
 
+    public void setTræner(Træner træner) {
+        this.træner = træner;
+    }
+
+    public ArrayList<SvømmeDisciplin> getSvømmediscipliner() {
+        return svømmediscipliner;
+    }
+
+    public void setSvømmediscipliner(ArrayList<SvømmeDisciplin> svømmediscipliner) {
+        this.svømmediscipliner = svømmediscipliner;
+    }
+
     public int getHoldNr() {
         return holdNr;
+    }
+
+    public void setHoldNr(int holdNr) {
+        this.holdNr = holdNr;
     }
 
     public ArrayList<KonkurrenceResultat> getKonkurrenceResultater() {
         return konkurrenceResultater;
     }
+
+    public void setKonkurrenceResultater(ArrayList<KonkurrenceResultat> konkurrenceResultater) {
+        this.konkurrenceResultater = konkurrenceResultater;
+    }
 }
+
+
+
