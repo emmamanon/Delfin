@@ -18,6 +18,34 @@ public class Main {
     private Scanner scanner;
 
 
+    void registerPayment() {
+        scanner = new Scanner(System.in);
+        System.out.println("Hvilket medlem ønsker du, at registere en betaling for?");
+        String navn = scanner.nextLine();
+        if (searchMembersByName(navn) != -1) {
+            medlemArray.get(searchMembersByName(navn)).setKontingentPayed(true);
+            System.out.println("Betaling er nu registreret");
+        } else {
+            System.out.println("Betaling kunne ikke registreres, da medlemmet ikke blev fundet");
+        }
+        System.out.println(medlemArray.get(searchMembersByName(navn)).isKontingentPayed());
+
+    }
+
+    void showMembersRestance() {
+        System.out.println("Medlemmer i Restance:");
+        System.out.println("*************");
+        for (Medlem element : medlemArray) {
+            if (!element.isKontingentPayed()) {
+                System.out.println("#" + element.getID() + " " + element.getNavn() + " Total restance: " +
+                        element.getKontingentsats());
+                System.out.println("*************");
+            }
+        }
+        System.out.println("*************");
+    }
+
+
 
     int searchMembersByName(String navn) {
         for (Medlem element : medlemArray) {
@@ -48,9 +76,12 @@ public class Main {
         System.out.println("Indtast true for aktivt eller false for " +
                 "passivt medlemskab");
         boolean aktivStatus = Boolean.parseBoolean(scanner.nextLine());
+        System.out.println("Indtast true for betalt kontingent eller false for " +
+                "ikke betalt kontingent");
+        boolean kontingentPayed = Boolean.parseBoolean(scanner.nextLine());
 
         if (!aktivStatus) {
-            ændredeMedlemmer.add(new Medlem(navn, id, alder, false, false));
+            ændredeMedlemmer.add(new Medlem(navn, id, alder, false, false,kontingentPayed));
         } else {
 
             System.out.println("Indtast true for konkurrenceSvømmer eller false " +
@@ -60,10 +91,10 @@ public class Main {
             if (konkurrenceSvømmer) {
                 int holdNr = (alder < 18 ? 2 : 1);
                 ændredeMedlemmer.add(new KonkurrenceSvømmer(navn, id, alder, true, true,
-                        new Træner((alder < 18 ? "Ole Juniorsen" : "Gunnar Seniorsen")),
+                        kontingentPayed, new Træner((alder < 18 ? "Ole Juniorsen" : "Gunnar Seniorsen")),
                         new ArrayList<SvømmeDisciplin>(), holdNr,  new ArrayList<KonkurrenceResultat>()));
             } else {
-                ændredeMedlemmer.add(new Medlem(navn, id, alder, true, false));
+                ændredeMedlemmer.add(new Medlem(navn, id, alder, true, false, kontingentPayed));
             }
         }
     }
@@ -72,15 +103,16 @@ public class Main {
 
         SwimReader swimReader = new SwimReader();
         scanner = new Scanner(System.in);
+        medlemArray = swimReader.loadMedlemmer();
 
         GeneriskMenu menu = new GeneriskMenu("DelfinAdmin", "Vælg menupunkt: ",
-                new String[]{"1. Tilføj nyt medlem", "2. Indtast bestilling", "3. Gem ændringer",
+                new String[]{"1. Tilføj nyt medlem", "2. Vis medlemmer i restance", "3. Gem ændringer",
                         "4. List alle medlemmer", "5. Tider for konkurrenceSvømmere", 
-                        "6. Søg efter medlem med navn",  "9. Exit"});
+                        "6. Søg efter medlem med navn", "7. Registrer betaling af kontingent", "9. Exit"});
 
         while (true) {
 
-            medlemArray = swimReader.loadMedlemmer();
+
 
             menu.printGeneriskMenu();
             int choice = menu.readChoice();
@@ -94,6 +126,8 @@ public class Main {
 
 
                 case 2:
+                    showMembersRestance();
+                    break;
 
 
 
@@ -130,10 +164,15 @@ public class Main {
                     System.out.println("Indtast medlems navn:");
                     String navn = scanner.nextLine();
                     if (searchMembersByName(navn) != -1) {
-                        System.out.println(medlemArray.get(searchMembersByName(navn)).getID());
-                        System.out.println(medlemArray.get(searchMembersByName(navn)).getNavn());
+                        System.out.printf("ID #%d, Navn: %s\n", medlemArray.get(searchMembersByName(navn)).getID(),
+                                medlemArray.get(searchMembersByName(navn)).getNavn());
                     }
                     break;
+
+                case 7:
+                    registerPayment();
+                    break;
+
 
                 case 9:
 

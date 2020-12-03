@@ -24,7 +24,7 @@ public class Medlem {
         super();
     }
 
-    Medlem(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer) {
+    Medlem(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer, boolean kontingentPayed) {
 
 
         //ID = 1;
@@ -34,6 +34,7 @@ public class Medlem {
         this.aktivStatus = aktivStatus;
         junior = (alder < 18);
         this.konkurrenceSvømmer = konkurrenceSvømmer;
+        this.kontingentPayed = kontingentPayed;
 
 
         if (!aktivStatus)
@@ -70,6 +71,17 @@ public class Medlem {
 
     public int getAlder() {
         return alder;
+    }
+
+    public boolean isKontingentPayed() {
+        return kontingentPayed;
+    }
+    public void setKontingentPayed(boolean bool) {
+        kontingentPayed = bool;
+    }
+
+    public double getKontingentsats() {
+        return kontingentsats;
     }
 }
 

@@ -58,8 +58,9 @@ public class SwimReader {
             int alder = Integer.parseInt(fileReader1.nextLine());
             boolean aktivStatus = Boolean.parseBoolean(fileReader1.nextLine());
             boolean konkurrenceSvømmer = Boolean.parseBoolean(fileReader1.nextLine());
+            boolean kontingentPayed = Boolean.parseBoolean((fileReader1.nextLine()));
 
-            medlemsListe.add(new Medlem(navn, id, alder, aktivStatus, konkurrenceSvømmer));
+            medlemsListe.add(new Medlem(navn, id, alder, aktivStatus, konkurrenceSvømmer, kontingentPayed));
 
         }
 
@@ -70,6 +71,7 @@ public class SwimReader {
             int alder = Integer.parseInt(fileReader2.nextLine());
             boolean aktivStatus = Boolean.parseBoolean(fileReader2.nextLine());
             boolean konkurrenceSvømmer = Boolean.parseBoolean(fileReader2.nextLine());
+            boolean kontingentPayed = Boolean.parseBoolean(fileReader2.nextLine());
             Træner træner = new Træner(fileReader2.nextLine());
             String[] svømmeDisciplinerOgTiderArray = fileReader2.nextLine().split(",");
             ArrayList<SvømmeDisciplin> svømmeDisciplinerOgTiderArrayList = new ArrayList<>();
@@ -112,8 +114,8 @@ public class SwimReader {
 
                 }
             }
-            medlemsListe.add(new KonkurrenceSvømmer(navn, id, alder, aktivStatus, konkurrenceSvømmer, træner,
-                    svømmeDisciplinerOgTiderArrayList, holdNr, konkurrenceResultaterArrayList));
+            medlemsListe.add(new KonkurrenceSvømmer(navn, id, alder, aktivStatus, konkurrenceSvømmer, kontingentPayed,
+                    træner, svømmeDisciplinerOgTiderArrayList, holdNr, konkurrenceResultaterArrayList));
 
         }
 
@@ -144,6 +146,7 @@ public class SwimReader {
             int alder = element.getAlder();
             boolean aktivStatus = element.isAktivStatus();
             boolean konkurrenceSvømmer = element.isKonkurrenceSvømmer();
+            boolean kontigentPayed = element.isKontingentPayed();
             if (element instanceof KonkurrenceSvømmer) {
                 Træner træner = ((KonkurrenceSvømmer) element).getTræner();
                 ArrayList<SvømmeDisciplin> svømmeDiscipliner =
@@ -159,6 +162,7 @@ public class SwimReader {
                     fileWriter2.write(String.valueOf(alder) + "\n");
                     fileWriter2.write(String.valueOf(aktivStatus) + "\n");
                     fileWriter2.write(String.valueOf(konkurrenceSvømmer) + "\n");
+                    fileWriter2.write(String.valueOf(kontigentPayed) + "\n");
                     fileWriter2.write(træner.getName() + "\n");
                     if (svømmeDiscipliner.size() < 1) {
                         fileWriter2.write("\n" );
@@ -194,6 +198,7 @@ public class SwimReader {
                     fileWriter1.write(alder + "\n");
                     fileWriter1.write(aktivStatus + "\n");
                     fileWriter1.write(konkurrenceSvømmer + "\n");
+                    fileWriter1.write(kontigentPayed + "\n");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

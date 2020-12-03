@@ -12,15 +12,17 @@ public class KonkurrenceSvømmer extends Medlem {
     private ArrayList<KonkurrenceResultat> konkurrenceResultater;
 
 
-    KonkurrenceSvømmer(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer) {
-        super(navn, ID, alder, aktivStatus, konkurrenceSvømmer);
+    KonkurrenceSvømmer(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer,
+                       boolean kontingentPayed) {
+        super(navn, ID, alder, aktivStatus, konkurrenceSvømmer, kontingentPayed);
     }
 
-    KonkurrenceSvømmer(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer, Træner træner,
+    KonkurrenceSvømmer(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer,
+                       boolean kontingentPayed, Træner træner,
                        ArrayList<SvømmeDisciplin> svømmediscipliner,
                        int holdNr, ArrayList<KonkurrenceResultat> konkurrenceResultater) {
 
-        super(navn, ID, alder, aktivStatus, konkurrenceSvømmer);
+        super(navn, ID, alder, aktivStatus, konkurrenceSvømmer, kontingentPayed);
         this.træner = træner;
         this.svømmediscipliner = svømmediscipliner;
         this.holdNr = holdNr;
