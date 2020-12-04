@@ -231,9 +231,9 @@ public class Main {
                     int i = 0;
                     for (Medlem element : medlemArray) {
                         if (element instanceof KonkurrenceSvømmer) {
-                           for (SvømmeDisciplin svømmeDisciplin : ((KonkurrenceSvømmer) element).getSvømmediscipliner()) {
-                               System.out.println(svømmeDisciplin.getNavn() + ", " + svømmeDisciplin.getTidISekunder());
-                           }
+                            for (SvømmeDisciplin svømmeDisciplin : ((KonkurrenceSvømmer) element).getSvømmediscipliner()) {
+                                System.out.println(svømmeDisciplin.getNavn() + ", " + svømmeDisciplin.getTidISekunder());
+                            }
 
                         }
                         i++;

@@ -46,7 +46,7 @@ public class Medlem {
         else
             kontingentsats = KONTINGENTSATS_SENIOR;
 
-        kontingentPayed = false;
+
     }
 
 

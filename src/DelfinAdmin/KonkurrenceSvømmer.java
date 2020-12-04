@@ -20,7 +20,7 @@ public class KonkurrenceSvømmer extends Medlem {
     KonkurrenceSvømmer(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer,
                        boolean kontingentPayed, Træner træner,
                        ArrayList<SvømmeDisciplin> svømmediscipliner
-                       , ArrayList<KonkurrenceResultat> konkurrenceResultater) {
+            , ArrayList<KonkurrenceResultat> konkurrenceResultater) {
 
         super(navn, ID, alder, aktivStatus, konkurrenceSvømmer, kontingentPayed);
         this.træner = træner;
@@ -94,7 +94,7 @@ public class KonkurrenceSvømmer extends Medlem {
 
         for (SvømmeDisciplin svømmeDisciplin : svømmediscipliner) {
             toString += String.format("Tid: %s\n",
-                     tidTilString(svømmeDisciplin.getTidISekunder()));
+                    tidTilString(svømmeDisciplin.getTidISekunder()));
         }
         return toString;
     }
