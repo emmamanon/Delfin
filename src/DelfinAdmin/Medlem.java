@@ -85,6 +85,8 @@ public class Medlem {
     public double getKontingentsats() {
         return kontingentsats;
     }
+
+
 }
 
 

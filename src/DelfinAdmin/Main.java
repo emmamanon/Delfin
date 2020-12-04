@@ -121,7 +121,6 @@ public class Main {
 
     void showMembersRestance() {
         System.out.println("Medlemmer i Restance:");
-        System.out.println("*************");
         for (Medlem element : medlemArray) {
             if (!element.isKontingentPayed()) {
                 System.out.println("#" + element.getID() + " " + element.getNavn() + " Total restance: " +
@@ -129,10 +128,7 @@ public class Main {
                 System.out.println("*************");
             }
         }
-        System.out.println("*************");
     }
-
-
 
     int searchMembersByName(String navn) {
         for (Medlem element : medlemArray) {
@@ -187,7 +183,6 @@ public class Main {
     }
 
     void  run() {
-
         SwimReader swimReader = new SwimReader();
         scanner = new Scanner(System.in);
         medlemArray = swimReader.loadMedlemmer();
@@ -195,30 +190,24 @@ public class Main {
 
         GeneriskMenu menu = new GeneriskMenu("DelfinAdmin", "Vælg menupunkt: ",
                 new String[]{"1. Tilføj nyt medlem", "2. Vis medlemmer i restance", "3. Gem ændringer",
-                        "4. List alle medlemmer", "5. Tider for konkurrenceSvømmere", 
+                        "4. Udtag top5", "5. Tider for konkurrenceSvømmere",
                         "6. Redigér tider for konkurrenceSvømmere", "7. Registrer betaling af kontingent",
                         "8. Vis konkurrenceresultater", "9. Exit"});
 
-        while (true) {
 
-
-
+        boolean run = true;
+        while (run) {
             menu.printGeneriskMenu();
             int choice = menu.readChoice();
 
             switch (choice) {
-
                 case 1: //Add new member
                     addNewMember();
                     break;
 
-
-
                 case 2:
                     showMembersRestance();
                     break;
-
-
 
                 case 3:
                     if (ændredeMedlemmer == null && !changesMade) {
@@ -231,14 +220,13 @@ public class Main {
                         ændredeMedlemmer.clear();
                     }
                     swimReader.writeToFiles(medlemArray);
-
                     break;
 
                 case 4:
-                    for (Medlem element : medlemArray) {
-                        System.out.println(element.getNavn());
-                    }
+                    Top5Sortering top5 = new Top5Sortering(medlemArray);
+                    top5.printTop5Sortering();
                     break;
+
                 case 5:
                     int i = 0;
                     for (Medlem element : medlemArray) {
@@ -260,6 +248,7 @@ public class Main {
                 case 7:
                     registerPayment();
                     break;
+
                 case 8:
                     for (Medlem element : medlemArray) {
                         if (element instanceof KonkurrenceSvømmer) {
@@ -273,10 +262,9 @@ public class Main {
                     }
                     break;
 
-
                 case 9:
-
-                    return;
+                    run = false;
+                    break;
 
             }
 
