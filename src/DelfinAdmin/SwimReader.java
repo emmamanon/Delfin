@@ -20,7 +20,7 @@ public class SwimReader {
     private Scanner fileReader2;
 
 
-    SwimReader() {
+    public SwimReader() {
         super();
     }
 
@@ -38,7 +38,7 @@ public class SwimReader {
         }
     }
 
-    ArrayList<Medlem> loadMedlemmer() {
+    public ArrayList<Medlem> loadMedlemmer() {
         ArrayList<Medlem> medlemsListe = new ArrayList<>();
 
         file1 = new File("SwimClubMembers.txt");

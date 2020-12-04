@@ -130,6 +130,21 @@ public class Main {
         }
     }
 
+
+    // Kun til JunitTest!
+    public int searchMembersByNameTEST(String navn, ArrayList<Medlem> medlemmer) {
+        for (Medlem medlem : medlemmer) {
+            if (medlem.getNavn().equalsIgnoreCase(navn)) {
+                return medlemmer.indexOf(medlem);
+            }
+        }
+        return -1;
+    }
+
+
+
+
+
     int searchMembersByName(String navn) {
         for (Medlem element : medlemArray) {
             if (navn.equalsIgnoreCase(element.getNavn())) {
