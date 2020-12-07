@@ -6,7 +6,7 @@ true
 true
 true
 Gunnar Seniorsen
-Bryst,140.0,2020,12,7,Crawl,91.0,2020,12,7,RygCrawl,110.0,2020,12,7,Butterfly,90.0,2020,12,7,
+Butterfly,90.0,2020,12,7,Crawl,91.0,2020,12,7,RygCrawl,110.0,2020,12,7,Bryst,140.0,2020,12,7,
 
 
 2
@@ -16,7 +16,7 @@ true
 true
 true
 Gunnar Seniorsen
-Bryst,151.0,2020,12,7,Crawl,89.0,2020,12,7,RygCrawl,1000.0,2020,12,7,Butterfly,2000.0,2020,12,7,
+Crawl,89.0,2020,12,7,Bryst,151.0,2020,12,7,RygCrawl,1000.0,2020,12,7,Butterfly,2000.0,2020,12,7,
 
 
 3
@@ -37,7 +37,7 @@ true
 true
 Gunnar Seniorsen
 Crawl,90.0,2020,12,7,RygCrawl,120.0,2020,12,7,Butterfly,120.0,2020,12,7,Bryst,150.0,2020,12,7,
-
+Vm,Crawl,1,10.0,
 
 5
 Samavia Ahmad
@@ -46,5 +46,5 @@ true
 true
 true
 Gunnar Seniorsen
-Bryst,139.0,2020,12,7,crawl,100.0,2020,12,7,RygCrawl,4000.0,2020,12,7,Butterfly,15.0,2020,12,7,
+Butterfly,15.0,2020,12,7,crawl,100.0,2020,12,7,Bryst,139.0,2020,12,7,RygCrawl,4000.0,2020,12,7,
 
