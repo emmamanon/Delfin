@@ -25,7 +25,7 @@ public class Main {
         if (medlemArray.get(searchMembersByName(navn)) instanceof KonkurrenceSvømmer) {
 
             System.out.println("Ønsker du at tilføje nye træningstider, eller et nyt konkurrenceresultat?" +
-                    "(t for træningstider, k for konkurrenceresultat");
+                    "(t for træningstider, k for konkurrenceresultat)");
             String userAnswer = scanner.nextLine();
 
             while (!userAnswer.equalsIgnoreCase("t") &&
@@ -43,13 +43,14 @@ public class Main {
                 while (run) {
 
                     System.out.println("Hvilken disciplin har svømmeren forbedret sin tid i?" +
-                            "(bryst, crawl, rygcrawl eller butterfly");
+                            "(bryst, crawl, rygcrawl eller butterfly)");
                     String disciplin = scanner.nextLine();
                     System.out.println("Hvad var tiden? (i sekunder og millisekunder)");
                     double tid = Double.parseDouble(scanner.nextLine());
-                    helpArrayTræning.add(new SvømmeDisciplin(disciplin, tid));
+                    LocalDate dato = LocalDate.now();
+                    helpArrayTræning.add(new SvømmeDisciplin(disciplin, tid, dato));
 
-                    System.out.println("Ønsker du at opdatere flere træningstider? (y for ja, n for nej");
+                    System.out.println("Ønsker du at opdatere flere træningstider? (y for ja, n for nej)");
                     String userDecision = scanner.nextLine();
 
                     while (!userDecision.equalsIgnoreCase("y") &&
@@ -83,7 +84,7 @@ public class Main {
 
                     helpArrayKonkurrence.add(new KonkurrenceResultat(compName, disciplin, rank, swimTime));
 
-                    System.out.println("Deltog svømmeren i andre discipliner ved samme stævne? (y for ja, n for nej");
+                    System.out.println("Deltog svømmeren i andre discipliner ved samme stævne? (y for ja, n for nej)");
                     String userDecision = scanner.nextLine();
 
                     while (!userDecision.equalsIgnoreCase("y") &&
@@ -115,7 +116,7 @@ public class Main {
         } else {
             System.out.println("Betaling kunne ikke registreres, da medlemmet ikke blev fundet");
         }
-        System.out.println(medlemArray.get(searchMembersByName(navn)).isKontingentPayed());
+
 
     }
 
@@ -197,13 +198,13 @@ public class Main {
         }
     }
 
-    void  run() {
+    void run() {
         SwimReader swimReader = new SwimReader();
         scanner = new Scanner(System.in);
         medlemArray = swimReader.loadMedlemmer();
         boolean changesMade = false;
 
-        GeneriskMenu menu = new GeneriskMenu("DelfinAdmin", "Vælg menupunkt: ",
+        GeneriskMenu menu = new GeneriskMenu("\nDelfinAdmin", "Vælg menupunkt: ",
                 new String[]{"1. Tilføj nyt medlem", "2. Vis medlemmer i restance", "3. Gem ændringer",
                         "4. Udtag top5", "5. Tider for konkurrenceSvømmere",
                         "6. Redigér tider for konkurrenceSvømmere", "7. Registrer betaling af kontingent",
@@ -262,6 +263,7 @@ public class Main {
 
                 case 7:
                     registerPayment();
+                    changesMade = true;
                     break;
 
                 case 8:
@@ -282,6 +284,8 @@ public class Main {
                     break;
 
             }
+            System.out.print("Tryk enter for at vende tilbage til hovedmenuen: ");
+            scanner.nextLine();
 
         }
     }

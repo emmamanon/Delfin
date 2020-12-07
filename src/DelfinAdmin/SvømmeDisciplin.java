@@ -1,5 +1,8 @@
 package DelfinAdmin;
 
+import java.time.LocalDate;
+import java.util.Comparator;
+
 /**
  * @author Martin
  */
@@ -8,9 +11,17 @@ public class SvømmeDisciplin {
     private String navn;
     private Medlem medlem;
     private double tidISekunder;
+    private LocalDate datoSat;
 
 
     SvømmeDisciplin(){
+
+    }
+
+    SvømmeDisciplin(String navn, double tidISekunder, LocalDate datoSat) {
+        this.navn = navn;
+        this.tidISekunder = tidISekunder;
+        this.datoSat = datoSat;
 
     }
 
@@ -18,6 +29,7 @@ public class SvømmeDisciplin {
         this.navn = navn;
         this.tidISekunder = tidISekunder;
     }
+
 
 
     public String getNavn() {
@@ -66,5 +78,9 @@ public class SvømmeDisciplin {
         this.medlem = medlem;
         this.tidISekunder = tidISekunder;
         return null;
+    }
+
+    public LocalDate getDatoSat() {
+        return datoSat;
     }
 }

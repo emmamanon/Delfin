@@ -14,11 +14,6 @@ public class KonkurrenceResultat {
     private double tidISekunder;
 
 
-
-    KonkurrenceResultat() {
-
-    }
-
     KonkurrenceResultat(String konkurrenceNavn, String disciplin, int rangering, double tidISekunder) {
         this.konkurrenceNavn = konkurrenceNavn;
         this.disciplin = disciplin;

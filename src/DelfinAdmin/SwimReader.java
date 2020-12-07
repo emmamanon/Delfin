@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,19 +25,6 @@ public class SwimReader {
         super();
     }
 
-    SwimReader(File file1, File file2) {
-        this.file1 = file1;
-        this.file2 = file2;
-
-        try {
-            fileWriter1 = new FileWriter(file1);
-            fileReader1 = new Scanner(file1);
-            fileWriter2 = new FileWriter(file2);
-            fileReader2 = new Scanner(file2);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public ArrayList<Medlem> loadMedlemmer() {
         ArrayList<Medlem> medlemsListe = new ArrayList<>();
@@ -78,18 +66,30 @@ public class SwimReader {
             String[] konkurrenceResultaterArray = fileReader2.nextLine().split(",");
             ArrayList<KonkurrenceResultat> konkurrenceResultaterArrayList = new ArrayList<>();
 
-            if (svømmeDisciplinerOgTiderArray.length < 2) {
+            if (svømmeDisciplinerOgTiderArray.length < 5) {
 
             } else {
 
                 int j = 1;
-                for (int i = 0; i < svømmeDisciplinerOgTiderArray.length - 1; i += 2) {
+                int q = 2;
+                int r = 3;
+                int v = 4;
+                for (int i = 0; i < svømmeDisciplinerOgTiderArray.length - 4; i += 5) {
 
 
-                    svømmeDisciplinerOgTiderArrayList.add(new SvømmeDisciplin(svømmeDisciplinerOgTiderArray[i]
-                            , Double.parseDouble(svømmeDisciplinerOgTiderArray[j])));
+                    String name = svømmeDisciplinerOgTiderArray[i];
+                    double tidIsek = Double.parseDouble(svømmeDisciplinerOgTiderArray[j]);
+                    int year = Integer.parseInt(svømmeDisciplinerOgTiderArray[q]);
+                    int month = Integer.parseInt(svømmeDisciplinerOgTiderArray[r]);
+                    int day = Integer.parseInt(svømmeDisciplinerOgTiderArray[v]);
 
-                    j += 2;
+                    SvømmeDisciplin svømmeDisciplin = new SvømmeDisciplin(name, tidIsek, LocalDate.of(year, month, day));
+                    svømmeDisciplinerOgTiderArrayList.add(svømmeDisciplin);
+
+                    j += 5;
+                    q += 5;
+                    r += 5;
+                    v += 5;
                 }
             }
 
@@ -127,9 +127,6 @@ public class SwimReader {
     }
 
 
-    void WriteToFilesHelper(ArrayList<Medlem> medlemmer) {
-
-    }
 
     void writeToFiles(ArrayList<Medlem> medlemmer) {
 
@@ -173,7 +170,10 @@ public class SwimReader {
                     } else {
                         for (SvømmeDisciplin svømmeDisciplin : svømmeDiscipliner) {
                             fileWriter2.write(svømmeDisciplin.getNavn() + "," +
-                                    svømmeDisciplin.getTidISekunder() + ",");
+                                    svømmeDisciplin.getTidISekunder() + "," +
+                                    svømmeDisciplin.getDatoSat().getYear() + "," +
+                                    svømmeDisciplin.getDatoSat().getMonthValue() + "," +
+                                    svømmeDisciplin.getDatoSat().getDayOfMonth() + ",");
                         }
                         fileWriter2.write("\n");
                     }

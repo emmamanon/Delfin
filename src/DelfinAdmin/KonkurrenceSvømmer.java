@@ -1,6 +1,10 @@
 package DelfinAdmin;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * @author Emma
@@ -77,27 +81,73 @@ public class KonkurrenceSvømmer extends Medlem {
 
     }
 
-    public int numOfMedals() {
+    public int numOfMedals(String disciplin) {
         int sum = 0;
         for (KonkurrenceResultat element : konkurrenceResultater) {
-            if (element.getRangering() == 1 || element.getRangering() == 2 || element.getRangering() == 3) {
-                sum++;
+            if (element.getDisciplin().equalsIgnoreCase(disciplin)) {
+                if (element.getRangering() == 1 || element.getRangering() == 2 || element.getRangering() == 3) {
+                    sum++;
+                }
             }
-
         }
         return sum;
     }
 
-    public String toString() {
-        String toString = String.format("Id: #%d\nNavn: %s\nAlder: %d\nAntal medaljer: %d\n",
-                super.getID(), super.getNavn(), super.getAlder(), numOfMedals());
+    ArrayList<SvømmeDisciplin> sortAfterFastestTime(ArrayList<SvømmeDisciplin> helpArray) {
+
+        for (int i = 0; i < helpArray.size() - 1; i++) {
+            for (int j = 0; j < helpArray.size() - 1; j++) {
+                if (helpArray.get(j).getTidISekunder() > helpArray.get(j + 1).getTidISekunder()) {
+                    Collections.swap(helpArray, j, j + 1);
+                }
+            }
+        }
+        return helpArray;
+    }
+
+    public double allTimePersonalBest(String discipline) {
+        double personalBest = 10000;
+        for (SvømmeDisciplin svømmeDisciplin : svømmediscipliner) {
+            if (svømmeDisciplin.getNavn().equalsIgnoreCase(discipline)) {
+                if (svømmeDisciplin.getTidISekunder() < personalBest) {
+                    personalBest = svømmeDisciplin.getTidISekunder();
+                }
+            }
+        }
+        for (KonkurrenceResultat konkurrenceResultat : konkurrenceResultater) {
+            if (konkurrenceResultat.getDisciplin().equalsIgnoreCase(discipline)) {
+                if (konkurrenceResultat.getTidISekunder() < personalBest) {
+                    personalBest = konkurrenceResultat.getTidISekunder();
+                }
+            }
+        }
+        return personalBest;
+    }
+
+
+
+
+
+    public String toString(String disciplin) {
+
+
+        String toString = String.format("Id: #%d\nNavn: %s\nAlder: %d\nPersonligt bedste i disciplinen: %s" +
+                        "\nAntal medaljer i disciplinen: %d\nRegistrerede træningsresultater:\n",
+                super.getID(), super.getNavn(), super.getAlder(),
+                tidTilString(allTimePersonalBest(disciplin)), numOfMedals(disciplin));
+
+        sortAfterFastestTime(svømmediscipliner);
+
 
         for (SvømmeDisciplin svømmeDisciplin : svømmediscipliner) {
-            toString += String.format("Tid: %s\n",
-                    tidTilString(svømmeDisciplin.getTidISekunder()));
+            if (svømmeDisciplin.getNavn().equalsIgnoreCase(disciplin)) {
+                toString += String.format("Tid: %s\nDato sat: %s\n",
+                        tidTilString(svømmeDisciplin.getTidISekunder()), svømmeDisciplin.getDatoSat());
+            }
         }
         return toString;
     }
+
 
 
 }
