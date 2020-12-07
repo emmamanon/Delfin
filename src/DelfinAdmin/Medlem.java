@@ -20,14 +20,10 @@ public class Medlem {
 
 
 
-    Medlem() {
-        super();
-    }
 
     Medlem(String navn, int ID, int alder, boolean aktivStatus, boolean konkurrenceSvømmer, boolean kontingentPayed) {
 
 
-        //ID = 1;
         this.ID = ID;
         this.navn = navn;
         this.alder = alder;

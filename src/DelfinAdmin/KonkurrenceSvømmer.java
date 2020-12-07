@@ -1,10 +1,9 @@
 package DelfinAdmin;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
+
 
 /**
  * @author Emma
@@ -49,13 +48,7 @@ public class KonkurrenceSvømmer extends Medlem {
         this.svømmediscipliner = svømmediscipliner;
     }
 
-    public int getHoldNr() {
-        return holdNr;
-    }
 
-    public void setHoldNr(int holdNr) {
-        this.holdNr = holdNr;
-    }
 
     public ArrayList<KonkurrenceResultat> getKonkurrenceResultater() {
         return konkurrenceResultater;
@@ -66,7 +59,7 @@ public class KonkurrenceSvømmer extends Medlem {
     }
 
     String tidTilString(double tidISek) {
-        String tidISekString = String.valueOf(tidISek);
+
 
         int min = (int) tidISek / 60;
         int sek = (int) tidISek % 60;

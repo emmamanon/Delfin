@@ -14,9 +14,7 @@ public class SvømmeDisciplin {
     private LocalDate datoSat;
 
 
-    SvømmeDisciplin(){
 
-    }
 
     SvømmeDisciplin(String navn, double tidISekunder, LocalDate datoSat) {
         this.navn = navn;
@@ -25,19 +23,13 @@ public class SvømmeDisciplin {
 
     }
 
-    SvømmeDisciplin(String navn, double tidISekunder) {
-        this.navn = navn;
-        this.tidISekunder = tidISekunder;
-    }
 
 
 
     public String getNavn() {
         return navn;
     }
-    public Medlem getMedlem() {
-        return medlem;
-    }
+
 
     public double getTidISekunder() {
         return tidISekunder;
