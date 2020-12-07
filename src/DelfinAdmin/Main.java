@@ -281,12 +281,11 @@ public class Main {
 
                 case 9:
                     run = false;
-                    break;
+                    return;
 
             }
             System.out.print("Tryk enter for at vende tilbage til hovedmenuen: ");
             scanner.nextLine();
-
         }
     }
 
